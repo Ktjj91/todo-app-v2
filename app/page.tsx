@@ -1,11 +1,10 @@
 import {db} from "@/lib/kysely";
 import {seed} from "@/lib/generate-table-Tasks";
-
 export async  function  task() {
-    "use server"
     let tasks;
     try {
-        return  tasks = db.selectFrom("tasks").selectAll().execute();
+          tasks = db.selectFrom("tasks").selectAll().execute();
+          return tasks;
 
     } catch (e:any) {
         if (e.message === `relation "tasks" does not exist`) {
@@ -13,7 +12,8 @@ export async  function  task() {
                 'Tasks does not exist, creating and seeding it with dummy data now...'
             )
             await  seed();
-           return tasks = db.selectFrom("tasks").selectAll().execute();
+            tasks = db.selectFrom("tasks").selectAll().execute();
+            return tasks;
 
         } else {
             throw new e
@@ -30,8 +30,6 @@ export default async function Home() {
                 <button className=' transition ease-out hover:bg-blue-500 mt-5 h-20 w-full rounded bg-blue-600 text-white'>Send</button>
             </form>
         </div>
-
-
     </main>
   );
 }
