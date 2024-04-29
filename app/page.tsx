@@ -1,5 +1,27 @@
+import {db} from "@/lib/kysely";
+import {seed} from "@/lib/generate-table-Tasks";
 
-export default function Home() {
+export async  function  task() {
+    let tasks;
+    try {
+        return  tasks = db.selectFrom("tasks").selectAll().execute();
+
+    } catch (e:any) {
+        if (e.message === `relation "tasks" does not exist`) {
+            console.log(
+                'Tasks does not exist, creating and seeding it with dummy data now...'
+            )
+            await  seed();
+           return tasks = db.selectFrom("tasks").selectAll().execute();
+
+        } else {
+            throw new e
+        }
+    }
+}
+export default async function Home() {
+    const data = await task();
+    console.log(data)
   return (
     <main className=" min-h-screen min-w-screen  ">
       <h1 className="text-5xl text-center">Todo list</h1>
