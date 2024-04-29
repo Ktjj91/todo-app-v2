@@ -2,6 +2,7 @@ import {db} from "@/lib/kysely";
 import {seed} from "@/lib/generate-table-Tasks";
 
 export async  function  task() {
+    "use server"
     let tasks;
     try {
         return  tasks = db.selectFrom("tasks").selectAll().execute();
@@ -20,8 +21,6 @@ export async  function  task() {
     }
 }
 export default async function Home() {
-    const data = await task();
-    console.log(data)
   return (
     <main className=" min-h-screen min-w-screen  ">
       <h1 className="text-5xl text-center">Todo list</h1>
