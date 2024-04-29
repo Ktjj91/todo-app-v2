@@ -4,7 +4,7 @@ import { createKysely } from '@vercel/postgres-kysely'
 interface Task{
     id:Generated<number>
     task:string
-    createdAT:Generated<Date>
+    createdAt:Generated<Date>
 }
 
 

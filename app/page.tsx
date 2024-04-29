@@ -1,7 +1,8 @@
-import {task} from "@/lib/tasks";
+import {tasks} from "@/lib/tasks";
 
 export default async function Home() {
-    const data = await task();
+    const data = await tasks();
+    console.log(data)
   return (
     <main className=" min-h-screen min-w-screen  ">
       <h1 className="text-5xl text-center">Todo list</h1>

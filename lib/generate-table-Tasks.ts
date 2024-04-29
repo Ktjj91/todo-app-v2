@@ -1,6 +1,5 @@
 import {sql,db} from "../lib/kysely";
 export async function  seed() {
-
     const createTable = await db.schema
         .createTable('tasks')
         .ifNotExists()
